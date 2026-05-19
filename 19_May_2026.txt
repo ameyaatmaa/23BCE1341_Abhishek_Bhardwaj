@@ -1,0 +1,57 @@
+CREATE TABLE Employee (
+	EMP_ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	FNAME CHAR(25),
+	LNAME CHAR(25),
+	INCOME INT(15),
+	DATE_JOINED DATETIME,
+	SECTION CHAR(25)
+);
+
+INSERT INTO Employee 
+	(EMP_ID, FNAME, LNAME, INCOME, DATE_JOINED, SECTION) VALUES
+		(101, 'Rahul', 'Sharma', 100000, '14-02-20 09.00.00', 'Sales'),
+		(102, 'Sneha', 'Mehta', 80000, '14-06-11 09.00.00', 'Support'),
+		(103, 'Karan', 'Malhotra', 300000, '14-02-20 09.00.00', 'Sales'),
+		(104, 'Anjali', 'Kapoor', 500000, '14-02-20 09.00.00', 'Support'),
+		(105, 'Rohit', 'Yadav', 500000, '14-06-11 09.00.00', 'Support'),
+		(106, 'Pooja', 'Saxena', 200000, '14-06-11 09.00.00', 'Finance'),
+		(107, 'Manish', 'Joshi', 75000, '14-01-20 09.00.00', 'Finance'),
+		(108, 'Neha', 'Bansal', 90000, '14-04-11 09.00.00', 'Support');
+
+select * from Employee;
+
+SELECT * FROM Employee WHERE fname LIKE '_a__a_';
+
+select * from Employee;
+
+select (income) from Employee where section='support';
+
+SELECT income FROM Employee
+UNION ALL
+SELECT income FROM Employee;
+
+select * from Employee;
+
+select emp_id as StudentNumber from Employee;
+
+select distinct(section) from Employee;
+
+SELECT emp_id, fname,
+CASE
+    WHEN income > 300000 THEN 'High Class'
+    WHEN income >= 100000 and income <299999 THEN 'Average'
+    ELSE 'Low Class'
+END 
+AS Category
+FROM Employee;
+
+select min(income) from Employee where section='support';
+select max(income) from Employee where section='support';
+
+create view minIncomeSupport as 
+select min(income) from Employee where section='support';
+
+create view maxIncomeSupport as 
+select max(income) from Employee where section='support';
+
+select * from maxIncomeSupport;
